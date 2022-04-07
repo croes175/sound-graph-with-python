@@ -5,6 +5,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.core.window import Window
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.boxlayout import BoxLayout
 
 # Archivos complementarios
 
@@ -37,25 +38,35 @@ class LoginScreen(Screen):
 
     def __init__(self, **kwargs):
         super(LoginScreen, self).__init__(**kwargs)
-       
-        self.param=GridLayout()
-        self.titulo=Label(text='Frecuency value', pos=(300,100))
+        self.supremo=BoxLayout()
+        self.param=BoxLayout()
+        self.param.orientation="vertical"
+        self.titulo=Label(text='Frecuency value')
         self.param.add_widget(self.titulo)
-        self.username = TextInput(multiline=False,pos=(300,200))
+        self.username = TextInput(multiline=False)
         self.param.add_widget(self.username)
         self.param.add_widget(Label(text='Amplitud'))
-        self.amplitud = TextInput(multiline=False)
+ 
+        self.amplitud=TextInput(multiline=False)
+       
         self.param.add_widget(self.amplitud)
-        self.button=Button(text ="Push Me !",size =(100, 100), pos=(100,100))
+        self.button=Button(text ="Push Me !",size =(100, 100))
         self.button.bind(on_press = self.callback)
         self.param.add_widget(self.button)
-        self.button1=Button(text ="Tono !!",size =(100, 100),pos=(400,400))
+        self.button1=Button(text ="Tono !!",size =(100, 100))
         self.button1.bind(on_press = self.tono)
         self.param.add_widget(self.button1)
-        self.button2=Button(text ="Exit",size =(100, 100),pos=(600,100))
+        self.button2=Button(text ="Exit",size =(100, 100))
         self.button2.bind(on_press = self.exit)
         self.param.add_widget(self.button2)
-        self.add_widget(self.param)
+        self.supremo.add_widget(self.param)
+        self.param1=BoxLayout()
+        self.param1.add_widget(Label(text='PARAMETROS DE SEÑALES'))
+        self.supremo.add_widget(self.param1)
+        self.supremo.orientation="vertical"
+        self.add_widget(self.supremo)
+        
+        
         
 
 
@@ -98,7 +109,7 @@ class LoginScreen(Screen):
 
     def callback(self,event):
         
-        print("hola mundo")
+        
         print(self.username.text)
         pygame.mixer.Sound('latigo_sheldon_cooper_big_bang_theory.wav').play()
 
@@ -109,19 +120,26 @@ class LoginScreen(Screen):
 class Intro(Screen): 
     def __init__(self, **kwargs):
         super(Intro, self).__init__(**kwargs)
-       
-        self.button=Button(text =" INICIO",size =(1, 1),pos=(10,10))
+        self.total=BoxLayout()
+        self.button=Button(text =" Señales",size =(1, 1),pos=(10,10))
         self.button.bind(on_press = self.exit)
-        self.add_widget(self.button)
+        self.total.add_widget(self.button)
+        self.add_widget(self.total)
     def exit(self,event):
         sm.current='menu'
         
+class Redes(Screen):
 
+    def __init__(self,**kwargs):
+        super(Intro, self).__init__(**kwargs)
+        
+        
 
 
 sm = ScreenManager()
 sm.add_widget(LoginScreen(name='menu'))   
 sm.add_widget(Intro(name='Intro'))
+sm.add_widget(
   
 
 
