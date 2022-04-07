@@ -6,6 +6,7 @@ from kivy.uix.button import Button
 from kivy.core.window import Window
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.boxlayout import BoxLayout
+from kivy.config import Config
 
 # Archivos complementarios
 
@@ -35,41 +36,6 @@ pygame.mixer.init()
 
 
 class LoginScreen(Screen):
-
-    def __init__(self, **kwargs):
-        super(LoginScreen, self).__init__(**kwargs)
-        self.supremo=BoxLayout()
-        self.param=BoxLayout()
-        self.param.orientation="vertical"
-        self.titulo=Label(text='Frecuency value')
-        self.param.add_widget(self.titulo)
-        self.username = TextInput(multiline=False)
-        self.param.add_widget(self.username)
-        self.param.add_widget(Label(text='Amplitud'))
- 
-        self.amplitud=TextInput(multiline=False)
-       
-        self.param.add_widget(self.amplitud)
-        self.button=Button(text ="Push Me !",size =(100, 100))
-        self.button.bind(on_press = self.callback)
-        self.param.add_widget(self.button)
-        self.button1=Button(text ="Tono !!",size =(100, 100))
-        self.button1.bind(on_press = self.tono)
-        self.param.add_widget(self.button1)
-        self.button2=Button(text ="Exit",size =(100, 100))
-        self.button2.bind(on_press = self.exit)
-        self.param.add_widget(self.button2)
-        self.supremo.add_widget(self.param)
-        self.param1=BoxLayout()
-        self.param1.add_widget(Label(text='PARAMETROS DE SEÑALES'))
-        self.supremo.add_widget(self.param1)
-        self.supremo.orientation="vertical"
-        self.add_widget(self.supremo)
-        
-        
-        
-
-
 
     def tono(self,event):
 
