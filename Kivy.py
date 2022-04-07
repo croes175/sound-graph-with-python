@@ -7,7 +7,8 @@ from kivy.core.window import Window
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.boxlayout import BoxLayout
 from kivy.config import Config
-
+from kivy.lang import Builder
+import kivy
 # Archivos complementarios
 
 import numpy as np
@@ -21,6 +22,8 @@ import matplotlib.pyplot as plt
 
 pygame.mixer.init(44100,-16,2,512)
 pygame.mixer.init()
+
+
 
 
 
@@ -41,13 +44,14 @@ def prueba():
 
 class LoginScreen(Screen):
 
-    def tono(self,event):
+    def tono(self,Frecuency,Amplitud):
 
         try:
 
-            fre=int(self.username.text)
-            amp=int(self.amplitud.text)
+            fre=int(Frecuency.text)
+            amp=int(Amplitud.text)
         except:
+            print("Error")
             return
 
         fs=44100
@@ -77,25 +81,19 @@ class LoginScreen(Screen):
         time.sleep(1)
 
 
-    def callback(self,event):
+    def callback(self):
         
         
         print(self.username.text)
         pygame.mixer.Sound('latigo_sheldon_cooper_big_bang_theory.wav').play()
 
-    def exit(self,event):
+    def exit(self):
         
         sm.current='Intro'
         
 class Intro(Screen): 
-    def __init__(self, **kwargs):
-        super(Intro, self).__init__(**kwargs)
-        self.total=BoxLayout()
-        self.button=Button(text =" Señales",size =(1, 1),pos=(10,10))
-        self.button.bind(on_press = self.exit)
-        self.total.add_widget(self.button)
-        self.add_widget(self.total)
-    def exit(self,event):
+
+    def exit(self):
         sm.current='menu'
         
 class Redes(Screen):
@@ -109,7 +107,7 @@ class Redes(Screen):
 sm = ScreenManager()
 sm.add_widget(LoginScreen(name='menu'))   
 sm.add_widget(Intro(name='Intro'))
-sm.add_widget(
+
   
 
 
@@ -121,14 +119,18 @@ class MyApp(App):
         Window.close()
    
     def build(self):
-
+        
+        sm = ScreenManager()
+        sm.add_widget(LoginScreen(name='menu'))   
+        sm.add_widget(Intro(name='Intro'))
         return sm
 
 
 
 
 if __name__ == '__main__':
-     MyApp().run()
+     a= MyApp()
+     a.run()
 
 
        

@@ -1,0 +1,41 @@
+
+<LoginScreen>
+    id: Prueba
+	BoxLayout:
+		orientation: "vertical"
+		BoxLayout:
+			Label:
+	        	id: Frecuency
+	        	text: "Frecuencia"
+
+	        TextInput:
+	            id: entry
+	            font_size: 32
+	            multiline: False
+	        Label:
+	        	id: Amplitud
+	        	text: "Amplitud"
+	        TextInput:
+	            id: entry1
+	            font_size: 32
+	            multiline: False
+	        Button:
+	            text: "PUSH ME"
+	            on_press: Prueba.tono(entry,entry1)		
+
+<Intro>
+	id: intro
+	text: "Hola"
+	Button:
+	    text: "PUSH ME"
+	BoxLayout:
+		Button:
+	        text: "Salida"
+	        on_press: 
+	            intro.exit()
+
+
+
+
+
+

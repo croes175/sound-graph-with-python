@@ -1,7 +1,7 @@
   
 import kivy   
 #from kivy.app import App  
-import kivy 
+ 
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout 
 from kivy.config import Config
