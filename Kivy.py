@@ -35,6 +35,10 @@ pygame.mixer.init()
 # A transition will automatica
 
 
+def prueba():
+    print("Prueba 1")
+
+
 class LoginScreen(Screen):
 
     def tono(self,event):
