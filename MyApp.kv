@@ -2,7 +2,7 @@
 <LoginScreen>
     id: Prueba
 	BoxLayout:
-		orientation: "vertical"
+		orientation: "horizontal"
 		BoxLayout:
 			Label:
 	        	id: Frecuency
@@ -21,7 +21,28 @@
 	            multiline: False
 	        Button:
 	            text: "PUSH ME"
-	            on_press: Prueba.tono(entry,entry1)		
+	            on_press: Prueba.tono(entry.text,entry1.text,image)		
+
+	    BoxLayout:
+		    Picture:
+		    # each time a picture is created, the image can delay the loading
+		    # as soon as the image is loaded, ensure that the center is changed
+		    # to the center of the screen.
+
+			    Image:
+			        id: image
+			        source: "Formato.png"
+			        size: 400, 400 / self.image_ratio
+			        canvas.before:
+			            Color:
+			                rgba: 1,1,1,1
+			            BorderImage:
+			                source: 'shadow32.png'
+			                border: (36,36,36,36)
+			                size:(self.width+72, self.height+72)
+			                pos: (-36,-36)
+
+
 
 <Intro>
 	id: intro

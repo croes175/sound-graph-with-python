@@ -9,6 +9,9 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.config import Config
 from kivy.lang import Builder
 import kivy
+from kivy.uix.scatter import Scatter
+import io
+from kivy.core.image import Image as CoreImage
 # Archivos complementarios
 
 import numpy as np
@@ -18,7 +21,6 @@ import datetime
 import simpleaudio
 import time
 import matplotlib.pyplot as plt
-
 
 pygame.mixer.init(44100,-16,2,512)
 pygame.mixer.init()
@@ -42,15 +44,49 @@ def prueba():
     print("Prueba 1")
 
 
+
+
+
+class Picture(Scatter):
+    '''Picture is the class that will show the image with a white border and a
+    shadow. They are nothing here because almost everything is inside the
+    picture.kv. Check the rule named <Picture> inside the file, and you'll see
+    how the Picture() is really constructed and used.
+
+    The source property will be the filename to show.
+    '''
+
+    source = StringProperty(None)
+
+    def imagenes():
+        pass
+        
+        
+
+    
+
+
+
 class LoginScreen(Screen):
 
-    def tono(self,Frecuency,Amplitud):
+    root="read.png"
+
+    
+
+
+
+    def tono(self,Frecuency,Amplitud,image):
+
+        print(image)
+
+        
 
         try:
 
-            fre=int(Frecuency.text)
-            amp=int(Amplitud.text)
-        except:
+            fre=int(Frecuency)
+            amp=int(Amplitud)
+        except Exception as e:
+            print(e)
             print("Error")
             return
 
@@ -76,7 +112,12 @@ class LoginScreen(Screen):
         
 
         ax.stem(b, senal)
-        plt.show()
+      
+        plt.savefig('Formato.png')
+        Picture.imagenes()
+        image.source='Formato.png'
+        image.reload()
+        
         
         time.sleep(1)
 
