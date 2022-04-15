@@ -8,20 +8,26 @@
 	        	id: Frecuency
 	        	text: "Frecuencia"
 
-	        TextInput:
-	            id: entry
-	            font_size: 32
-	            multiline: False
+	        Slider:
+		        id: sliderF
+		        min: 0
+		        max: 12000
+		        step: 1
+		        orientation: 'vertical'
 	        Label:
 	        	id: Amplitud
 	        	text: "Amplitud"
-	        TextInput:
-	            id: entry1
-	            font_size: 32
-	            multiline: False
+
+	        Slider:
+		        id: sliderA
+		        min: 0
+		        max: 1024
+		        step: 1
+		        orientation: 'vertical'
+
 	        Button:
 	            text: "PUSH ME"
-	            on_press: Prueba.tono(entry.text,entry1.text,image)		
+	            on_press: Prueba.tono(sliderF.value,sliderA.value,image)		
 
 	    BoxLayout:
 		    Picture:
@@ -32,15 +38,7 @@
 			    Image:
 			        id: image
 			        source: "Formato.png"
-			        size: 400, 400 / self.image_ratio
-			        canvas.before:
-			            Color:
-			                rgba: 1,1,1,1
-			            BorderImage:
-			                source: 'shadow32.png'
-			                border: (36,36,36,36)
-			                size:(self.width+72, self.height+72)
-			                pos: (-36,-36)
+			        size: 400/ self.image_ratio, 400 / self.image_ratio
 
 
 

@@ -85,6 +85,8 @@ class LoginScreen(Screen):
 
             fre=int(Frecuency)
             amp=int(Amplitud)
+            print(amp)
+            print(fre)
         except Exception as e:
             print(e)
             print("Error")
@@ -97,7 +99,7 @@ class LoginScreen(Screen):
         b=np.linspace(0,1 , int(fs*T))
         b=T*b
 
-        senal=(amp*4096*np.cos(2*np.pi*b*fre)).astype(np.int16)
+        senal=(amp*np.cos(2*np.pi*b*fre)).astype(np.int16)
        
        
         senal2=np.c_[senal,senal]
@@ -108,18 +110,37 @@ class LoginScreen(Screen):
         sound.stop()
 
        
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(2)
+
+        # Señal En tiempo
+
+        ax[0].stem(b, senal)
+
+        # Señal en Frecuencia
+
+
+        fy=np.abs(np.fft.fft(senal))
+        xy=np.linspace(-fs/2,fs/2 , len(fy))
+
+
+        ax[1].stem(xy,fy)
+
+
+        
         
 
-        ax.stem(b, senal)
+
+        
+
+        
       
         plt.savefig('Formato.png')
-        Picture.imagenes()
+        
         image.source='Formato.png'
         image.reload()
+
+        plt.close()
         
-        
-        time.sleep(1)
 
 
     def callback(self):
